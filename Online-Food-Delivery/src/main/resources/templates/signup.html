@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<section>
+		<div class="container" >
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+					<div class="my-card mt-3">
+					
+					<!--alert msg  -->
+						<div th:if="${session.message}" th:classappend="${session.message.type}"
+						 class="alert" role="alert">
+						 	<p th:text="${session.message.content}"></p>
+						 	
+						 	<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+						 </div>
+							
+					<div class="container text-center">
+						<img  style="width: 50px" th:src="@{/images/registration.png}">
+					</div>			
+
+						<h1 class="text-center">Registeration</h1>
+						<form novalidate="novalidate" th:action="@{/register}" method="post" th:object="${user}">   <!-- user is an object which passed through model  -->
+
+							<!--First  Name field -->
+							<div class="form-group">
+								<label for="fname_field">First Name</label>
+								 <input
+								    name="firstname"  
+									type="text" 
+									class="form-control"
+									th:classappend="${#fields.hasErrors('firstname') ? 'is-invalid' : ''}" 
+									id="fname_field"
+									aria-describedby="emailHelp" 
+									placeholder="Enter First Name"
+									required="required"
+									th:value="${user.firstname}" />
+									
+								<div class="invalid-feedback" th:each="e : ${#fields.errors('firstname')}" th:text="${e}">Please provide a valid city.
+								</div>
+
+							</div>
+							
+							<!-- Last Name field -->
+							<div class="form-group">
+								<label for="lname_field">First Name</label>
+								 <input
+								    name="lastname"  
+									type="text" 
+									class="form-control"
+									th:classappend="${#fields.hasErrors('lastname') ? 'is-invalid' : ''}" 
+									id="lname_field"
+									aria-describedby="emailHelp" 
+									placeholder="Enter Last Name"
+									required="required"
+									th:value="${user.lastname}" />
+									
+								<div class="invalid-feedback" th:each="e : ${#fields.errors('lastname')}" th:text="${e}">Please provide a valid city.
+								</div>
+
+							</div>
+							
+							<!-- Login field -->
+							<div class="form-group">
+								<label for="login_field">Login Id</label>
+								 <input
+								    name="login"  
+									type="text" 
+									class="form-control"
+									th:classappend="${#fields.hasErrors('login') ? 'is-invalid' : ''}" 
+									id="login_field"
+									aria-describedby="emailHelp" 
+									placeholder="Enter Login Id"
+									required="required"
+									th:value="${user.login}" />
+									
+								<div class="invalid-feedback" th:each="e : ${#fields.errors('login')}" th:text="${e}">Please provide a valid city.
+								</div>
+
+							</div>
+							
+							<!-- password field -->
+							<div class="form-group">
+								<label for="password_field">Password</label>
+								 <input
+								 	name="password"
+									type="password" 
+									class="form-control" 
+									id="password_field"
+									aria-describedby="emailHelp" 
+									placeholder="Enter Passsword"
+									required="required">
+							</div>
+							
+							<!-- confirm-password field -->
+							<div class="form-group">
+								<label for="confirm_password_field">Confirm Password</label>
+								 <input
+								 	name="confirmPassword"
+									type="password" 
+									class="form-control" 
+									id="confirm_password_field"
+									aria-describedby="emailHelp" 
+									placeholder="Enter Confirm  Passsword"
+									required="required">
+							</div>
+							
+	  						<!-- Email field -->
+							<div class="form-group">
+								<label for="email_field">Email Address</label>
+								 <input
+								 	name="email"
+									type="email" 
+									class="form-control" 
+									id="email_field"
+									aria-describedby="emailHelp" 
+									placeholder="Enter Email"
+									required="required"
+									th:value="${user.email}">
+							</div>
+							
+							
+							
+							<!-- contact field -->
+							<div class="form-group">
+								<label for="contact_field">Contact</label>
+								 <input
+								 	name="contact"
+									type="number" 
+									class="form-control" 
+									id="contact_field"
+									aria-describedby="emailHelp" 
+									placeholder="Enter Contact Number"
+									required="required"
+									th:value="${user.contact}">
+							</div>
+							
+							
+							
+							
+							<!-- Terms & Conditions  -->
+							<div class="form-group form-check" >
+								<input
+									type="checkbox"
+									name="agreement"
+									id="agreement"
+									class="form-check-input"
+								/>
+								<label for="agreement">Accept Terms & Conditions</label>
+							</div>
+							
+							
+							<div class="container text-center">
+									<button type="submit" class="btn bg-primary1 text-white" >Submit</button>
+									<button type="reset" class="btn btn-danger text-white" >Reset</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+</body>
+</html>
