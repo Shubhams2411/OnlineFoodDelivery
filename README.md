@@ -1,2 +1,2 @@
 # OnlineFoodDelivery
-Online Food Delivery Ecommerce project for CCPP
+Online Food Delivery Ecommerce project
